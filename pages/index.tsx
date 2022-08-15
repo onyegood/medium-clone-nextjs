@@ -20,10 +20,15 @@ const Home: NextPage<Props> = ({ posts }) => {
       <div>
         {posts.map((post: IPost) => (
           <Link key={post.id} href={`/posts/${post.id}`}>
-            <>
-              <h1>{post.title}</h1>
-              <p>{post.body}</p>
-            </>
+            <div className='flex justify-between p-5 my-3 bg-white'>
+              <div>
+                <p>{post.title}</p>
+                <p>{post.body}</p>
+              </div>
+              <div className='h-12 w-12 rounded-full bg-slate-500 text-center justify-center content-center'>
+                <p>AB</p>
+              </div>
+            </div>
           </Link>
         ))}
       </div>
