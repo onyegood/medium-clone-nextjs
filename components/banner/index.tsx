@@ -3,7 +3,7 @@ import React from 'react'
 const BannerComponent = () =>{
   return (
     <div
-      className="flex items-center justify-between bg-yellow-400 border-y border-black py-10 lg:py-0 max-w-7xl mx-auto"
+      className="flex items-center justify-between bg-yellow-400 border-y border-black py-10 lg:py-0"
     >
       <div className="px-10 space-y-5">
         <h1 className="text-6xl font-serif max-w-xl">
