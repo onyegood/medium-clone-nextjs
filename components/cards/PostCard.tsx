@@ -8,7 +8,7 @@ interface Props {
 
 const PostCard: React.FC<Props> = ({ post }) => {
   return (
-    <Link key={post.id} href={`/posts/${post.id}`}>
+    <Link href={`/posts/${post.id}`}>
       <div className="group cursor-pointer border rounded-lg overflow-hidden">
         <img
           className="h-60 w-full object-cover group-hover:scale-105 transition-transform duration-200 ease-in-out"
