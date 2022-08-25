@@ -13,12 +13,12 @@ interface Props {
 
 const Home: NextPage<Props> = ({ posts }) => {
   return (
-    <div className='max-w-7xl mx-auto'>
+    <main className='max-w-7xl mx-auto'>
       <HeadComponent />
       <HeaderComponent />
       <BannerComponent />
       <BodyComponent posts={posts} />
-    </div>
+    </main>
   );
 };
 
