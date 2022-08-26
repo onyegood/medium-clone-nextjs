@@ -2,15 +2,16 @@ import React from 'react';
 import axios from 'axios';
 import { env } from 'process';
 import { IPost } from '../../models';
-import { GetServerSideProps, GetStaticProps } from 'next';
+import { GetStaticProps } from 'next';
 import HeadComponent from '../../components/head';
 import HeaderComponent from '../../components/header';
+import CommentForm from '../form/CommentForm';
 
 interface Props {
   post: IPost;
 }
 
-const PostDetails: React.FC<Props> = ({ post: { title, body } }) => {
+const PostDetails: React.FC<Props> = ({ post: { title, body, id } }) => {
   return (
     <main className="max-w-7xl mx-auto">
       <HeadComponent title={title} />
@@ -41,25 +42,7 @@ const PostDetails: React.FC<Props> = ({ post: { title, body } }) => {
         </div>
       </article>
 
-      <hr className='max-w-lg my-5 mx-auto border border-yellow-500' />
-
-      <form className='flex flex-col max-w-2xl mx-auto p-5 mb-10'>
-        <h3 className='text-sm text-yellow-500'>Enjoyed this article?</h3>
-        <h4 className='text-3xl font-bold'>Leave a comment below!</h4>
-        <hr className='py-3 mt-2' />
-        <label>
-          <span>Name</span>
-          <input placeholder='John bow' type='text' />
-        </label>
-        <label>
-          <span>Email</span>
-          <input placeholder='test@yahoo.com' type='email' />
-        </label>
-        <label>
-          <span>Comment</span>
-          <textarea placeholder='Comment...' rows={10} />
-        </label>
-      </form>
+      <CommentForm postId={id} />
     </main>
   );
 };
