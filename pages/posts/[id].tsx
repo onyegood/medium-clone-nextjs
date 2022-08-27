@@ -1,17 +1,22 @@
 import React from 'react';
 import axios from 'axios';
 import { env } from 'process';
-import { IPost } from '../../models';
+import { IComment, IPost } from '../../models';
 import { GetStaticProps } from 'next';
 import HeadComponent from '../../components/head';
 import HeaderComponent from '../../components/header';
 import CommentForm from '../form/CommentForm';
+import CommentsComponent from './Comments';
 
 interface Props {
   post: IPost;
+  comments: IComment[];
 }
 
-const PostDetails: React.FC<Props> = ({ post: { title, body, id } }) => {
+const PostDetails: React.FC<Props> = ({
+  post: { title, body, id },
+  comments,
+}) => {
   return (
     <main className="max-w-7xl mx-auto">
       <HeadComponent title={title} />
@@ -43,6 +48,7 @@ const PostDetails: React.FC<Props> = ({ post: { title, body, id } }) => {
       </article>
 
       <CommentForm postId={id} />
+      {comments && comments.length && <CommentsComponent comments={comments} />}
     </main>
   );
 };
@@ -69,6 +75,10 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const res = await axios.get(`${env.NEXT_PUBLIC_API_URL}posts/${params?.id}`);
+  const { data } = await axios.get(
+    `${env.NEXT_PUBLIC_API_URL}posts/${params?.id}/comments`
+  );
+
   if (!res.data) {
     return {
       notFound: true,
@@ -77,6 +87,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
       post: res.data,
+      comments: data,
     },
     revalidate: 60, //this update the old ca
   };
