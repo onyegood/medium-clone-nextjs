@@ -8,7 +8,7 @@ const BannerComponent = () => {
           <span className="underline decoration-black decoration-4">
             Medium
           </span>{' '}
-          is a place to read, write, and connect
+          is a place to read, write, and connect. testing.
         </h1>
         <h2>
           It's easy to post your thinking on any topic and connect with millions
